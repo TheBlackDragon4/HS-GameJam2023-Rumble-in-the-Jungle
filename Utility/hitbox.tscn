@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4n3q3rbqn03"]
+
+[ext_resource type="Script" path="res://scripts/Hitbox.gd" id="1_hbaqa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_be15y"]
+size = Vector2(134, 36)
+
+[node name="Hitbox" type="Area2D" groups=["attack"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_hbaqa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(105, -412)
+shape = SubResource("RectangleShape2D_be15y")
+disabled = true
+
+[node name="DisableTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="DisableTimer" to="." method="_on_disable_timer_timeout"]

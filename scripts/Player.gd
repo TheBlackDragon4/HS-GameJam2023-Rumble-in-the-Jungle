@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-var speed = 300.0
-var jump_speed = -400.0
+@export var speed = 300.0
+@export var jump_speed = -400.0
+@export var hp = 10
 
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -20,3 +21,10 @@ func _physics_process(delta):
 	velocity.x = direction * speed
 
 	move_and_slide()
+
+func _on_hurtbox_hurt(damage):
+	hp -= damage
+	print("took damage")
+	if hp <= 0:
+		queue_free()
+		print("dead")

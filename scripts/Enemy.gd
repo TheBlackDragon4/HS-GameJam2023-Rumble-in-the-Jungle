@@ -16,6 +16,6 @@ func _process(delta):
 func _on_hurtbox_hurt(damage):
 	hp -= damage
 	print("took damage")
-	if hp < 0:
+	if hp <= 0:
 		queue_free()
 		print("dead")

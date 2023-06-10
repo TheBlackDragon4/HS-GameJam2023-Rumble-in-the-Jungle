@@ -1,16 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2s4428cr2etw"]
+[gd_scene load_steps=19 format=3 uid="uid://cgi0b3w8exlvu"]
 
 [ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
-[ext_resource type="Script" path="res://scripts/movement.gd" id="2_bekid"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="2_ewcii"]
 [ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://Lizard/Lizard_Sheet.png" id="3_gussx"]
 [ext_resource type="Script" path="res://scripts/Animate.gd" id="4_khgh5"]
+[ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="5_6iwr6"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
+[ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="8_3pxye"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="8_s70ku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
-size = Vector2(14.175, 11.655)
+size = Vector2(11.6, 0.669999)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_npapu"]
-size = Vector2(128, 256)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gq2v"]
+size = Vector2(28, 680)
 
 [sub_resource type="Animation" id="Animation_qq0fr"]
 resource_name = "Idle"
@@ -59,6 +62,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_1piet"]
 length = 0.001
@@ -106,58 +121,77 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
-size = Vector2(156, 167)
+size = Vector2(123.333, 176.667)
 
 [node name="Scene" type="Node2D"]
 
-[node name="Floor" type="Node2D" parent="."]
+[node name="Border" type="Node2D" parent="."]
+visible = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+[node name="Floor" type="StaticBody2D" parent="Border"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
-position = Vector2(66, 575)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Floor"]
+position = Vector2(-88, 94.5)
 scale = Vector2(100, 100)
 shape = SubResource("RectangleShape2D_tm2t1")
+
+[node name="WallLeft" type="StaticBody2D" parent="Border"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/WallLeft"]
+position = Vector2(-678, -208)
+shape = SubResource("RectangleShape2D_7gq2v")
+
+[node name="WallRight" type="StaticBody2D" parent="Border"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/WallRight"]
+position = Vector2(508, -208)
+shape = SubResource("RectangleShape2D_7gq2v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-83, -193)
 
-[node name="Fighter1" type="Node2D" parent="."]
-position = Vector2(49, 80)
+[node name="Fighter" type="Node2D" parent="."]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Fighter1"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Fighter"]
+position = Vector2(-35, 276)
+script = ExtResource("8_s70ku")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fighter1/CharacterBody2D"]
-position = Vector2(-509, -285)
-shape = SubResource("RectangleShape2D_npapu")
-
-[node name="Sprite2D" type="Sprite2D" parent="Fighter1/CharacterBody2D/CollisionShape2D"]
-position = Vector2(0, -3.05176e-05)
-scale = Vector2(1, 1.99219)
-texture = ExtResource("1_ojscw")
-
-[node name="Player" type="Node2D" parent="."]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
-script = ExtResource("2_bekid")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player/CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Fighter/CharacterBody2D"]
 position = Vector2(210, -363)
 texture = ExtResource("3_gussx")
 hframes = 3
 vframes = 3
-frame = 7
+frame = 1
 
-[node name="PlayerAnimation" type="AnimationPlayer" parent="Player/CharacterBody2D"]
+[node name="PlayerAnimation" type="AnimationPlayer" parent="Fighter/CharacterBody2D"]
 libraries = {
 "": SubResource("AnimationLibrary_du2e3")
 }
 script = ExtResource("4_khgh5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D"]
-position = Vector2(240, -400)
+[node name="BorderCollider" type="CollisionShape2D" parent="Fighter/CharacterBody2D"]
+visible = false
+position = Vector2(260.5, -350.5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
+
+[node name="Hitbox" parent="Fighter/CharacterBody2D" instance=ExtResource("5_6iwr6")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Dummy" type="Node2D" parent="."]
+position = Vector2(49, 80)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Dummy"]
+script = ExtResource("2_ewcii")
+hp = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Dummy/CharacterBody2D"]
+position = Vector2(-509, -285)
+scale = Vector2(1, 1.99219)
+texture = ExtResource("1_ojscw")
+
+[node name="Hurtbox" parent="Dummy/CharacterBody2D" instance=ExtResource("8_3pxye")]
 
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(16, -59)
@@ -171,3 +205,8 @@ texture = ExtResource("6_136cb")
 [node name="Camera2D" type="Camera2D" parent="Background"]
 position = Vector2(-125, -336)
 zoom = Vector2(1280, 1024)
+
+[connection signal="hurt" from="Dummy/CharacterBody2D/Hurtbox" to="Dummy/CharacterBody2D" method="_on_hurtbox_hurt"]
+
+[editable path="Fighter/CharacterBody2D/Hitbox"]
+[editable path="Dummy/CharacterBody2D/Hurtbox"]
