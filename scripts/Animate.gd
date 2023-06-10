@@ -28,7 +28,7 @@ func _process(_delta):
 	if not self.is_playing():
 		self.play("Idle")
 		
-	print (locked)
+	#print (locked)
 
 func _timeout():
 	locked = 0

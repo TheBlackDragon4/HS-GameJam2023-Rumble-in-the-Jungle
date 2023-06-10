@@ -13,9 +13,9 @@ func _process(delta):
 	pass # Replace with function body.
 	
 
-
-func _on_hurt(damage):
+func _on_hurtbox_hurt(damage):
 	hp -= damage
-	if hp <= 0:
+	print("took damage")
+	if hp < 0:
 		queue_free()
-	print(hp)
+		print("dead")
