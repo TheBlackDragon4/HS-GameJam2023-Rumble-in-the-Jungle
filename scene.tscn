@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://h3c8f7kip5dx"]
+[gd_scene load_steps=5 format=3 uid="uid://c2s4428cr2etw"]
 
 [ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
 
@@ -7,6 +7,9 @@ size = Vector2(14.175, 11.655)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pybmh"]
 size = Vector2(238, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npapu"]
+size = Vector2(128, 256)
 
 [node name="Scene" type="Node2D"]
 
@@ -38,3 +41,17 @@ texture = ExtResource("1_ojscw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-83, -193)
+
+[node name="Fighter1" type="Node2D" parent="."]
+position = Vector2(50, 80)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Fighter1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fighter1/CharacterBody2D"]
+position = Vector2(-509, -285)
+shape = SubResource("RectangleShape2D_npapu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fighter1/CharacterBody2D/CollisionShape2D"]
+position = Vector2(0, -3.05176e-05)
+scale = Vector2(1, 1.99219)
+texture = ExtResource("1_ojscw")
