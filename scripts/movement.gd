@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 # The movement of the character
-var speed = 100 
+var speed = 250 
 
 func _process(delta):
+	
 	var movement = Vector2.ZERO
 	
 	if Input.is_action_pressed("ui_left"):
