@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=12 format=3 uid="uid://c2s4428cr2etw"]
 
 [ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
@@ -5,15 +6,126 @@
 [ext_resource type="Script" path="res://scripts/Animate.gd" id="4_khgh5"]
 [ext_resource type="Texture2D" uid="uid://c0n04qyevnjn7" path="res://Lizard/Lizard_Sheet.png" id="4_pyxxu"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
+=======
+[gd_scene load_steps=16 format=3 uid="uid://c2s4428cr2etw"]
+
+[ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
+[ext_resource type="Script" path="res://scripts/Hurtbox.gd" id="2_2pj35"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="2_m68x4"]
+[ext_resource type="Script" path="res://scripts/movement.gd" id="2_nta8m"]
+[ext_resource type="Texture2D" uid="uid://dk28w455870cd" path="res://resources/sprites/NightBorne/NightBorne.png" id="2_qjbiq"]
+[ext_resource type="Script" path="res://scripts/Hitbox.gd" id="3_xxdcu"]
+>>>>>>> Stashed changes
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
 size = Vector2(14.175, 11.655)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pybmh"]
-size = Vector2(238, 112)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbxam"]
+size = Vector2(129, 128.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_npapu"]
-size = Vector2(128, 256)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dljs"]
+size = Vector2(111.5, 112.5)
+
+[sub_resource type="Animation" id="Animation_etybt"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_yfkgm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_by3so"]
+resource_name = "melee1"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(11, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_pyw7l"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxue8"]
+_data = {
+"Idle": SubResource("Animation_etybt"),
+"RESET": SubResource("Animation_yfkgm"),
+"melee1": SubResource("Animation_by3so"),
+"run": SubResource("Animation_pyw7l")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dq4b"]
+radius = 150.0
+height = 318.0
 
 [sub_resource type="Animation" id="Animation_k7v2g"]
 resource_name = "Walk"
@@ -55,6 +167,9 @@ _data = {
 
 [node name="Scene" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-83, -193)
+
 [node name="Floor" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
@@ -69,30 +184,53 @@ position = Vector2(-80, 173)
 scale = Vector2(8.10938, 3.70312)
 texture = ExtResource("1_ojscw")
 
-[node name="Character" type="Node2D" parent="."]
+[node name="TestDummy" type="Node2D" parent="."]
+script = ExtResource("2_m68x4")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Character"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/RigidBody2D"]
-position = Vector2(-92, -340)
-shape = SubResource("RectangleShape2D_pybmh")
-
-[node name="Sprite2D" type="Sprite2D" parent="Character/RigidBody2D"]
-position = Vector2(-100, -349)
+[node name="Sprite2D" type="Sprite2D" parent="TestDummy"]
+position = Vector2(20, -142)
 texture = ExtResource("1_ojscw")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-83, -193)
+[node name="Hurtbox" type="Area2D" parent="TestDummy/Sprite2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_2pj35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestDummy/Sprite2D/Hurtbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_qbxam")
+
+[node name="DisableTimer" type="Timer" parent="TestDummy/Sprite2D/Hurtbox"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="TestDummy" groups=["attack"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_xxdcu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestDummy/Hitbox"]
+position = Vector2(21, -141)
+shape = SubResource("RectangleShape2D_5dljs")
+
+[node name="DisableTimer" type="Timer" parent="TestDummy/Hitbox"]
+wait_time = 0.5
+one_shot = true
 
 [node name="Fighter1" type="Node2D" parent="."]
-position = Vector2(50, 80)
+position = Vector2(865, 125)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Fighter1"]
+position = Vector2(-23, 138)
+script = ExtResource("2_nta8m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fighter1/CharacterBody2D"]
-position = Vector2(-509, -285)
-shape = SubResource("RectangleShape2D_npapu")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Fighter1/CharacterBody2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_kxue8")
+}
 
+<<<<<<< Updated upstream
 [node name="Sprite2D" type="Sprite2D" parent="Fighter1/CharacterBody2D/CollisionShape2D"]
 position = Vector2(0, -3.05176e-05)
 scale = Vector2(1, 1.99219)
@@ -126,3 +264,48 @@ texture = ExtResource("6_136cb")
 [node name="Camera2D" type="Camera2D" parent="Background"]
 position = Vector2(-125, -336)
 zoom = Vector2(1280, 1024)
+=======
+[node name="Sprite2D" type="Sprite2D" parent="Fighter1/CharacterBody2D"]
+position = Vector2(-1200, -459)
+scale = Vector2(5, 5)
+texture = ExtResource("2_qjbiq")
+hframes = 23
+vframes = 5
+frame = 23
+
+[node name="Hitbox" type="Area2D" parent="Fighter1/CharacterBody2D" groups=["attack"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_xxdcu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fighter1/CharacterBody2D/Hitbox"]
+position = Vector2(-1150, -452)
+shape = SubResource("CapsuleShape2D_2dq4b")
+disabled = true
+
+[node name="DisableTimer" type="Timer" parent="Fighter1/CharacterBody2D/Hitbox"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="Fighter1/CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_2pj35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fighter1/CharacterBody2D/Hurtbox"]
+position = Vector2(-1200, -405)
+shape = SubResource("RectangleShape2D_qbxam")
+
+[node name="DisableTimer" type="Timer" parent="Fighter1/CharacterBody2D/Hurtbox"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="area_entered" from="TestDummy/Sprite2D/Hurtbox" to="TestDummy/Sprite2D/Hurtbox" method="_on_area_entered"]
+[connection signal="hurt" from="TestDummy/Sprite2D/Hurtbox" to="TestDummy" method="_on_hurtbox_hurt"]
+[connection signal="timeout" from="TestDummy/Sprite2D/Hurtbox/DisableTimer" to="TestDummy/Sprite2D/Hurtbox" method="_on_disable_timer_timeout"]
+[connection signal="timeout" from="TestDummy/Hitbox/DisableTimer" to="TestDummy/Hitbox" method="_on_disable_timer_timeout"]
+[connection signal="timeout" from="Fighter1/CharacterBody2D/Hitbox/DisableTimer" to="Fighter1/CharacterBody2D/Hitbox" method="_on_disable_timer_timeout"]
+[connection signal="area_entered" from="Fighter1/CharacterBody2D/Hurtbox" to="Fighter1/CharacterBody2D/Hurtbox" method="_on_area_entered"]
+[connection signal="hurt" from="Fighter1/CharacterBody2D/Hurtbox" to="Fighter1/CharacterBody2D/Hurtbox" method="_on_hurt"]
+[connection signal="timeout" from="Fighter1/CharacterBody2D/Hurtbox/DisableTimer" to="Fighter1/CharacterBody2D/Hurtbox" method="_on_disable_timer_timeout"]
+>>>>>>> Stashed changes
