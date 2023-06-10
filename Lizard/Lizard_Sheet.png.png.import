@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0n04qyevnjn7"
-path="res://.godot/imported/Lizard_Sheet.png-f054e9901ea9b313fe9ec71fc160b918.ctex"
+uid="uid://cmo7jg141oret"
+path="res://.godot/imported/Lizard_Sheet.png.png-0c3a6614b4063466364e844c0ad0cdf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lizard/Lizard_Sheet.png"
-dest_files=["res://.godot/imported/Lizard_Sheet.png-f054e9901ea9b313fe9ec71fc160b918.ctex"]
+source_file="res://Lizard/Lizard_Sheet.png.png"
+dest_files=["res://.godot/imported/Lizard_Sheet.png.png-0c3a6614b4063466364e844c0ad0cdf1.ctex"]
 
 [params]
 

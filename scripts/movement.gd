@@ -4,7 +4,6 @@ extends CharacterBody2D
 var speed = 250 
 
 func _process(delta):
-	
 	var movement = Vector2.ZERO
 	
 	if Input.is_action_pressed("ui_left"):
@@ -15,6 +14,7 @@ func _process(delta):
 		movement.y -= speed
 	if Input.is_action_pressed("ui_down"):
 		movement.y += speed
+		
 
 	# Normalize the direction vector to ensure that the movement is at constant speed
 	movement = movement.normalized()

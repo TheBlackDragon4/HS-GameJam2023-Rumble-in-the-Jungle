@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2s4428cr2etw"]
+[gd_scene load_steps=15 format=3 uid="uid://c2s4428cr2etw"]
 
 [ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
 [ext_resource type="Script" path="res://scripts/movement.gd" id="2_bekid"]
+[ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://Lizard/Lizard_Sheet.png.png" id="3_21fsi"]
 [ext_resource type="Script" path="res://scripts/Animate.gd" id="4_khgh5"]
-[ext_resource type="Texture2D" uid="uid://c0n04qyevnjn7" path="res://Lizard/Lizard_Sheet.png" id="4_pyxxu"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
@@ -15,25 +15,12 @@ size = Vector2(238, 112)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npapu"]
 size = Vector2(128, 256)
 
-[sub_resource type="Animation" id="Animation_k7v2g"]
-resource_name = "Walk"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 4]
-}
-
 [sub_resource type="Animation" id="Animation_1piet"]
 length = 0.001
+
+[sub_resource type="Animation" id="Animation_qq0fr"]
+resource_name = "Idle"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,13 +31,64 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_xo5x5"]
+resource_name = "Walk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 1]
+}
+
+[sub_resource type="Animation" id="Animation_n7pag"]
+resource_name = "Walk_Back"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 1]
+}
+
+[sub_resource type="Animation" id="Animation_nfr35"]
+resource_name = "Punch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_du2e3"]
 _data = {
+"Idle": SubResource("Animation_qq0fr"),
+"Punch": SubResource("Animation_nfr35"),
 "RESET": SubResource("Animation_1piet"),
-"Walk": SubResource("Animation_k7v2g")
+"Walk": SubResource("Animation_xo5x5"),
+"Walk_Back": SubResource("Animation_n7pag")
 }
 
 [node name="Scene" type="Node2D"]
@@ -104,12 +142,13 @@ texture = ExtResource("1_ojscw")
 script = ExtResource("2_bekid")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/CharacterBody2D"]
-position = Vector2(127, -245)
-texture = ExtResource("4_pyxxu")
+position = Vector2(210, -363)
+texture = ExtResource("3_21fsi")
 hframes = 3
 vframes = 3
+frame = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/CharacterBody2D"]
+[node name="PlayerAnimation" type="AnimationPlayer" parent="Player/CharacterBody2D"]
 libraries = {
 "": SubResource("AnimationLibrary_du2e3")
 }
