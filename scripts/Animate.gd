@@ -23,6 +23,8 @@ func _process(_delta):
 		timer.start()
 	if Input.is_action_pressed("ui_right"):
 		_smart_play("Walk_Back")
+	if Input.is_action_pressed("ui_up"):
+		_smart_play("Jump")
 	if not self.is_playing():
 		self.play("Idle")
 		

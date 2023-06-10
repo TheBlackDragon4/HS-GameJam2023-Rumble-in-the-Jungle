@@ -1,26 +1,22 @@
 extends CharacterBody2D
 
-# The movement of the character
-var speed = 250 
+var speed = 300.0
+var jump_speed = -400.0
 
-func _process(delta):
-	var movement = Vector2.ZERO
-	
-	if Input.is_action_pressed("ui_left"):
-		movement.x -= speed;
-	if Input.is_action_pressed("ui_right"):
-		movement.x += speed;
-	if Input.is_action_pressed("ui_up"):
-		movement.y -= speed
-	if Input.is_action_pressed("ui_down"):
-		movement.y += speed
-		
+# Get the gravity from the project settings so you can sync with rigid body nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-	# Normalize the direction vector to ensure that the movement is at constant speed
-	movement = movement.normalized()
-	
-	# Calculate the movementspeed
-	var velocity = movement * speed
-	
-	# Movement of the character
-	move_and_collide(velocity * delta)
+
+func _physics_process(delta):
+	# Add the gravity.
+	velocity.y += gravity * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed("ui_up") and is_on_floor():
+		velocity.y = jump_speed
+
+	# Get the input direction.
+	var direction = Input.get_axis("ui_left", "ui_right")
+	velocity.x = direction * speed
+
+	move_and_slide()

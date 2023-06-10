@@ -1,22 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2s4428cr2etw"]
+[gd_scene load_steps=16 format=3 uid="uid://c2s4428cr2etw"]
 
 [ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
 [ext_resource type="Script" path="res://scripts/movement.gd" id="2_bekid"]
-[ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://Lizard/Lizard_Sheet.png.png" id="3_21fsi"]
+[ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://Lizard/Lizard_Sheet.png" id="3_gussx"]
 [ext_resource type="Script" path="res://scripts/Animate.gd" id="4_khgh5"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
 size = Vector2(14.175, 11.655)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pybmh"]
-size = Vector2(238, 112)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npapu"]
 size = Vector2(128, 256)
-
-[sub_resource type="Animation" id="Animation_1piet"]
-length = 0.001
 
 [sub_resource type="Animation" id="Animation_qq0fr"]
 resource_name = "Idle"
@@ -33,6 +27,41 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+
+[sub_resource type="Animation" id="Animation_xwqkd"]
+resource_name = "Jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_nfr35"]
+resource_name = "Punch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_1piet"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_xo5x5"]
 resource_name = "Walk"
@@ -66,30 +95,18 @@ tracks/0/keys = {
 "values": [4, 1]
 }
 
-[sub_resource type="Animation" id="Animation_nfr35"]
-resource_name = "Punch"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_du2e3"]
 _data = {
 "Idle": SubResource("Animation_qq0fr"),
+"Jump": SubResource("Animation_xwqkd"),
 "Punch": SubResource("Animation_nfr35"),
 "RESET": SubResource("Animation_1piet"),
 "Walk": SubResource("Animation_xo5x5"),
 "Walk_Back": SubResource("Animation_n7pag")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
+size = Vector2(156, 167)
 
 [node name="Scene" type="Node2D"]
 
@@ -98,32 +115,15 @@ _data = {
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
-position = Vector2(6.99999, 510)
+position = Vector2(66, 575)
 scale = Vector2(100, 100)
 shape = SubResource("RectangleShape2D_tm2t1")
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor/StaticBody2D"]
-position = Vector2(-80, 173)
-scale = Vector2(8.10938, 3.70312)
-texture = ExtResource("1_ojscw")
-
-[node name="Character" type="Node2D" parent="."]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Character"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/RigidBody2D"]
-position = Vector2(-92, -340)
-shape = SubResource("RectangleShape2D_pybmh")
-
-[node name="Sprite2D" type="Sprite2D" parent="Character/RigidBody2D"]
-position = Vector2(-100, -349)
-texture = ExtResource("1_ojscw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-83, -193)
 
 [node name="Fighter1" type="Node2D" parent="."]
-position = Vector2(50, 80)
+position = Vector2(49, 80)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Fighter1"]
 
@@ -143,10 +143,10 @@ script = ExtResource("2_bekid")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/CharacterBody2D"]
 position = Vector2(210, -363)
-texture = ExtResource("3_21fsi")
+texture = ExtResource("3_gussx")
 hframes = 3
 vframes = 3
-frame = 2
+frame = 7
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="Player/CharacterBody2D"]
 libraries = {
@@ -154,11 +154,17 @@ libraries = {
 }
 script = ExtResource("4_khgh5")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D"]
+position = Vector2(240, -400)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_d8flk")
+
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(16, -59)
 
 [node name="Jungle" type="Sprite2D" parent="Background"]
-position = Vector2(1375, -732)
+z_index = -1
+position = Vector2(-105, -153)
 scale = Vector2(1.13086, 0.658203)
 texture = ExtResource("6_136cb")
 
