@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="HsGameJam"
+run/main_scene="res://scene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,4 +22,4 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/test/plugin.cfg")
+enabled=PackedStringArray()
