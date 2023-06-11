@@ -68,8 +68,7 @@ func _move():
 			
 		decision = rng.randf()
 		print_debug(decision)
-		if decision > 0.5:
-			print_debug("Jump")
+		if decision > 0.7:
 			_jump()
 			
 		

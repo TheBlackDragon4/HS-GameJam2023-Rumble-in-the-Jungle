@@ -7,6 +7,8 @@ extends CharacterBody2D
 
 signal playerDead
 
+var bar
+
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -29,7 +31,7 @@ func _physics_process(delta):
 
 func _on_hurtbox_hurt(damage):
 	hp -= damage
-	print("hit")
+	bar.value = hp
 	if hp <= 0:
 		print(hp)
 		queue_free()
@@ -39,6 +41,9 @@ func flip_direction():
 	apply_scale(Vector2(scale.x * -1,1)) # flip
 	set_position(Vector2(position.x, position.y))
 
+func _ready():
+	bar = get_node("../Interface/PlayerHealth")
+	print_debug(bar)
 #func update_health():
 #	var healthbar = %Interface/PlayerHealth
 #	healthbar.value = hp

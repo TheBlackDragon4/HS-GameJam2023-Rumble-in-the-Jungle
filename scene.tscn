@@ -122,12 +122,15 @@ text = "Score: 0"
 script = ExtResource("5_dw4nc")
 
 [node name="PlayerHealth" type="ProgressBar" parent="Interface"]
-modulate = Color(0.34902, 0.619608, 0.247059, 1)
+modulate = Color(0.807843, 0.321569, 0.345098, 1)
 layout_mode = 0
 offset_left = -644.0
 offset_top = -448.0
 offset_right = -308.0
 offset_bottom = -387.0
+max_value = 10.0
+step = 1.0
+value = 10.0
 
 [connection signal="enemyDeath" from="Enemy" to="Interface/Score" method="_on_enemy_enemy_death"]
 [connection signal="playerDead" from="Player" to="." method="_on_player_player_dead"]
