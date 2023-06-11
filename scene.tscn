@@ -192,8 +192,6 @@ texture = ExtResource("6_136cb")
 
 [node name="Enemy" parent="." instance=ExtResource("6_44s2c")]
 
-[connection signal="enemyDead" from="Enemy" to="." method="_on_enemy_enemy_dead"]
-
 [editable path="Fighter/CharacterBody2D/Hitbox"]
 [editable path="Enemy"]
 [editable path="Enemy/Hurtbox"]
