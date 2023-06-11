@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dk5tjxxwugqvc"]
+[gd_scene load_steps=15 format=3 uid="uid://dk5tjxxwugqvc"]
 
 [ext_resource type="Script" path="res://resources/sprites/scripts/Player.gd" id="1_6wtpw"]
 [ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://resources/sprites/Lizard/Lizard_Sheet.png" id="2_f2dim"]
-[ext_resource type="Script" path="res://resources/sprites/scripts/Animate.gd" id="3_bfsxt"]
+
+[ext_resource type="Script" path="res://scripts/Animate.gd" id="3_bfsxt"]
+[ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="4_j7o0y"]
+
 [ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="4_ja1uh"]
 [ext_resource type="AudioStream" uid="uid://btdkf40buegr" path="res://resources/sounds/blurp.wav" id="5_o85qg"]
 
@@ -114,15 +117,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
 size = Vector2(86.3332, 170.333)
 
-[node name="Player" type="CharacterBody2D"]
-position = Vector2(-35, 276)
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(-35, 275)
 script = ExtResource("1_6wtpw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_f2dim")
 hframes = 3
 vframes = 3
-frame = 1
+frame = 2
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -131,20 +134,31 @@ libraries = {
 script = ExtResource("3_bfsxt")
 
 [node name="BorderCollider" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(50, 16)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
 
+[node name="Hurtbox" parent="." instance=ExtResource("4_j7o0y")]
+position = Vector2(50, 16)
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-15, 1.66667)
+debug_color = Color(0.937255, 0, 0.619608, 0.419608)
+
 [node name="Hitbox" parent="." instance=ExtResource("4_ja1uh")]
-visible = false
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-104, -50)
+position = Vector2(-103, -51)
 
 [node name="PlayerSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_o85qg")
 
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]
 [editable path="Hitbox"]
