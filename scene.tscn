@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2s4428cr2etw"]
+[gd_scene load_steps=19 format=3 uid="uid://cgi0b3w8exlvu"]
 
 [ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="2_ewcii"]
@@ -121,7 +121,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
-size = Vector2(123.333, 176.667)
+size = Vector2(86.3332, 170.333)
 
 [node name="Scene" type="Node2D"]
 
@@ -176,6 +176,7 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
 
 [node name="Hitbox" parent="Fighter/CharacterBody2D" instance=ExtResource("5_6iwr6")]
+visible = false
 collision_layer = 4
 collision_mask = 4
 
@@ -191,7 +192,13 @@ position = Vector2(-509, -285)
 scale = Vector2(1, 1.99219)
 texture = ExtResource("1_ojscw")
 
+[node name="BorderCollider" type="CollisionShape2D" parent="Dummy/CharacterBody2D"]
+position = Vector2(-508.75, -286.75)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_d8flk")
+
 [node name="Hurtbox" parent="Dummy/CharacterBody2D" instance=ExtResource("8_3pxye")]
+visible = false
 
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(16, -59)
@@ -201,10 +208,6 @@ z_index = -1
 position = Vector2(-105, -153)
 scale = Vector2(1.13086, 0.658203)
 texture = ExtResource("6_136cb")
-
-[node name="Camera2D" type="Camera2D" parent="Background"]
-position = Vector2(-125, -336)
-zoom = Vector2(1280, 1024)
 
 [connection signal="hurt" from="Dummy/CharacterBody2D/Hurtbox" to="Dummy/CharacterBody2D" method="_on_hurtbox_hurt"]
 

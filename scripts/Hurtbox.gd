@@ -1,22 +1,23 @@
 class_name Hurtbox extends Area2D
 
-#@export_enum("Cooldown", "DisableHitBox") var HurtBoxType = 0
 @onready var collision = $CollisionShape2D
 @onready var disableTimer = $DisableTimer
 
 signal hurt(damage)
 
+# Area overlap
 func _on_area_entered(area):
+	# is area in attack group
 	if area.is_in_group("attack"):
+		# if dmg = 0 dont do shit cause if then crash
 		if not area.get("damage") == null:
-			#match HurtBoxType:
-				#0: #Cooldown
+			# disable hurtbox
 			collision.call_deferred("set_disabled", true)
+			# start timer
 			disableTimer.start()
-				#1: #DisableHitBox
-				#	if area.has_method("tempDisable"):
-				#		area.tempDisable()
+			# calculate dmg
 			var damage = area.damage
+			# send signal to enemy/player
 			emit_signal("hurt", damage)
 
 func _on_disable_timer_timeout():

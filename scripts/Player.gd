@@ -22,6 +22,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+# Hit detection
 func _on_hurtbox_hurt(damage):
 	hp -= damage
 	print("took damage")
