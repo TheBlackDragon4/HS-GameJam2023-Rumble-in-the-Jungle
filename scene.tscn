@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=18 format=3 uid="uid://c2s4428cr2etw"]
 
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_ctpxj"]
 [ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://Lizard/Lizard_Sheet.png" id="3_gussx"]
