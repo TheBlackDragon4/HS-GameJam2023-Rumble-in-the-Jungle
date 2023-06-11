@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbegks35erhxn"]
+
+[ext_resource type="Script" path="res://scripts/pauseScript.gd" id="1_nx0bk"]
+
+[node name="paused" type="Node2D"]
+script = ExtResource("1_nx0bk")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Pausenfenster"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
