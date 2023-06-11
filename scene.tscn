@@ -121,7 +121,7 @@ offset_bottom = -330.0
 text = "Score: 0"
 script = ExtResource("5_dw4nc")
 
-[node name="PlayerHealth" type="ProgressBar" parent="Interface"]
+[node name="EnemyHealth" type="ProgressBar" parent="Interface"]
 modulate = Color(0.807843, 0.321569, 0.345098, 1)
 layout_mode = 0
 offset_left = -644.0
@@ -131,6 +131,32 @@ offset_bottom = -387.0
 max_value = 10.0
 step = 1.0
 value = 10.0
+
+[node name="EnemyHealthLabel" type="Label" parent="Interface/EnemyHealth"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = -61.0
+offset_right = 302.0
+offset_bottom = -1.0
+text = "Enemy Health"
+
+[node name="PlayerHealth" type="ProgressBar" parent="Interface"]
+modulate = Color(0.807843, 0.321569, 0.345098, 1)
+layout_mode = 0
+offset_left = 139.0
+offset_top = -448.0
+offset_right = 475.0
+offset_bottom = -387.0
+max_value = 10.0
+step = 1.0
+value = 10.0
+
+[node name="EnemyHealthLabel" type="Label" parent="Interface/PlayerHealth"]
+offset_left = 25.0
+offset_top = -61.0
+offset_right = 302.0
+offset_bottom = -1.0
+text = "Player Health"
 
 [connection signal="enemyDeath" from="Enemy" to="Interface/Score" method="_on_enemy_enemy_death"]
 [connection signal="playerDead" from="Player" to="." method="_on_player_player_dead"]

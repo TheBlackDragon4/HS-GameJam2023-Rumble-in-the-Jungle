@@ -10,6 +10,7 @@ var animation
 var player
 var sound
 var scene
+var bar
 
 var timer
 var locked = 0
@@ -98,7 +99,10 @@ func _ready():
 	player = get_node("../Player")
 	sound = get_node("EnemySound")
 	scene = get_node("../../Scene")
+	bar = get_node("../Interface/EnemyHealth")
 	hp = scene.enemy_start_health
+	bar.max_value = hp
+	bar.value = hp
 	_smart_play("Punch")
 	pass # Replace with function body.
 
@@ -121,7 +125,7 @@ func _physics_process(delta):
 	# Hit detection
 func _on_hurtbox_hurt(damage):
 	hp -= damage
-	print("took damage")
+	bar.value = hp
 	if hp <= 0:
 		emit_signal("enemyDeath")
 		scene.enemy_start_health += 1
