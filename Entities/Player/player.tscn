@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://dk5tjxxwugqvc"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_6wtpw"]
+[ext_resource type="Script" path="res://resources/sprites/scripts/Player.gd" id="1_6wtpw"]
 [ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://resources/sprites/Lizard/Lizard_Sheet.png" id="2_f2dim"]
-[ext_resource type="Script" path="res://scripts/Animate.gd" id="3_bfsxt"]
+[ext_resource type="Script" path="res://resources/sprites/scripts/Animate.gd" id="3_bfsxt"]
 [ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="4_ja1uh"]
 [ext_resource type="AudioStream" uid="uid://btdkf40buegr" path="res://resources/sounds/blurp.wav" id="5_o85qg"]
 

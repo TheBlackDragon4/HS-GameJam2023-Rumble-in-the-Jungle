@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://be70f8swjaixt"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_w6hoa"]
-[ext_resource type="Texture2D" uid="uid://cjq61i3cwmw7l" path="res://resources/sprites/Snake_Sheet.png" id="2_sxomi"]
+[ext_resource type="Script" path="res://resources/sprites/scripts/Enemy.gd" id="1_m4pip"]
+[ext_resource type="Texture2D" uid="uid://dxf8ekaieb3ip" path="res://resources/sprites/Snake/Snake_Sheet.png" id="2_0d51a"]
 [ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="3_oy0cc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
@@ -41,7 +41,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_atybw"]
 resource_name = "Punch"
-length = 0.4
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -49,10 +49,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [4]
+"values": [4, 1]
 }
 
 [sub_resource type="Animation" id="Animation_pejgp"]
@@ -68,7 +68,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [0, 7]
 }
 
 [sub_resource type="Animation" id="Animation_dptkb"]
@@ -84,7 +84,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [3, 1]
+"values": [3, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5k0sb"]
@@ -97,16 +97,16 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(-500, -68)
-script = ExtResource("1_w6hoa")
+script = ExtResource("1_m4pip")
 hp = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1, 1.99219)
-texture = ExtResource("2_sxomi")
+texture = ExtResource("2_0d51a")
+flip_h = true
 hframes = 3
 vframes = 3
-frame = 6
+frame = 1
 
 [node name="BorderCollider" type="CollisionShape2D" parent="."]
 position = Vector2(7, 52.5)
