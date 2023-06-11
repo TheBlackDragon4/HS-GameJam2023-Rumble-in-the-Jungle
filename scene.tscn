@@ -1,5 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgi0b3w8exlvu"]
 
+
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_16jjp"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
@@ -16,7 +17,7 @@ default_font_size = 41
 
 [node name="Scene" type="Node2D"]
 position = Vector2(659, 517)
-script = ExtResource("1_16jjp")
+script = ExtResource("1_qn15u")
 
 [node name="Border" type="Node2D" parent="."]
 
