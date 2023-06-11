@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=9 format=3 uid="uid://cgi0b3w8exlvu"]
 
+[ext_resource type="Script" path="res://scripts/escape-enter-entf.gd" id="1_0pfoj"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
 [ext_resource type="Script" path="res://scripts/Score.gd" id="5_dw4nc"]
@@ -16,6 +17,7 @@ default_font_size = 41
 
 [node name="Scene" type="Node2D"]
 position = Vector2(659, 517)
+script = ExtResource("1_0pfoj")
 
 [node name="Border" type="Node2D" parent="."]
 visible = false
@@ -101,5 +103,3 @@ offset_right = -495.0
 offset_bottom = -330.0
 text = "Score: 0"
 script = ExtResource("5_dw4nc")
-
-[connection signal="dead" from="Enemy" to="Interface/Score" method="_on_enemy_dead"]
