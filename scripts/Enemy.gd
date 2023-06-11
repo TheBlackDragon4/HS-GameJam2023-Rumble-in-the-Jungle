@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 @export var speed = 300.0
 @export var jump_speed = -400.0
-@export var hp = 1
+var hp = 0
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var animation
 var player
 var sound
+var scene
 
 var timer
 var locked = 0
@@ -83,6 +84,9 @@ func _ready():
 	animation = get_node("EnemyAnimation")
 	player = get_node("../Player")
 	sound = get_node("EnemySound")
+	scene = get_node("../../Scene")
+	hp = scene.enemy_start_health
+	_smart_play("Punch")
 	pass # Replace with function body.
 
 
@@ -107,6 +111,7 @@ func _on_hurtbox_hurt(damage):
 	print("took damage")
 	if hp <= 0:
 		emit_signal("enemyDeath")
+		scene.enemy_start_health += 1
 		queue_free()
 		# spawn new enemy
 		var enemy = duplicate()

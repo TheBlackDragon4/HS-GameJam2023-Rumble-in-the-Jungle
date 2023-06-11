@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var enemy_start_health = 1
+
 func _ready():
 	set_process(true)
 	$Interface/Retry.hide()
