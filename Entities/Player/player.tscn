@@ -146,6 +146,7 @@ collision_mask = 4
 position = Vector2(-103, -51)
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_j7o0y")]
+visible = false
 collision_layer = 2
 collision_mask = 2
 

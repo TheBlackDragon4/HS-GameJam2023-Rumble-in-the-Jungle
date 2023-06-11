@@ -65,7 +65,7 @@ func _move():
 func _attack():
 	var distance = _get_distance_to_player(true)
 	var decision = distance - rng.randf_range(0,200)
-	print_debug(decision)
+#	print_debug(decision)
 	if decision < 0:
 		_smart_play("Punch")
 

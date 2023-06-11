@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://be70f8swjaixt"]
+[gd_scene load_steps=13 format=3 uid="uid://be70f8swjaixt"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_w6hoa"]
-[ext_resource type="Texture2D" uid="uid://bg4agmeyivvet" path="res://resources/sprites/Snake/Snake_Sheet.png" id="2_51c3g"]
+[ext_resource type="Texture2D" uid="uid://dxf8ekaieb3ip" path="res://resources/sprites/Snake/Snake_Sheet.png" id="2_51c3g"]
+[ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="3_3krpr"]
 [ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="3_oy0cc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
@@ -19,7 +20,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [7]
 }
 
@@ -35,24 +36,35 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [6]
 }
 
 [sub_resource type="Animation" id="Animation_atybw"]
 resource_name = "Punch"
-length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.34902, 0.843137, 0.968627, 1), Color(0, 0.501961, 0.788235, 1), Color(0.34902, 0.843137, 0.968627, 1), Color(0, 0.501961, 0.788235, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [4, 7]
+"values": [Vector2i(1, 2), Vector2i(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_pejgp"]
@@ -67,7 +79,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1]
 }
 
@@ -83,8 +95,35 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [3, 1]
+}
+
+[sub_resource type="Animation" id="Animation_god8g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.419608, 0.419608, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5k0sb"]
@@ -92,6 +131,7 @@ _data = {
 "Idle": SubResource("Animation_8ahnx"),
 "Jump": SubResource("Animation_geuss"),
 "Punch": SubResource("Animation_atybw"),
+"RESET": SubResource("Animation_god8g"),
 "Walk": SubResource("Animation_pejgp"),
 "Walk_Back": SubResource("Animation_dptkb")
 }
@@ -101,6 +141,7 @@ script = ExtResource("1_w6hoa")
 hp = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.419608, 0.419608, 1)
 scale = Vector2(1, 1.99219)
 texture = ExtResource("2_51c3g")
 flip_h = true
@@ -114,11 +155,14 @@ position = Vector2(3.5, 53.5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
 
+[node name="Hitbox" parent="." instance=ExtResource("3_3krpr")]
+
 [node name="Hurtbox" parent="." instance=ExtResource("3_oy0cc")]
+visible = false
 position = Vector2(-52, 74)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(56, -34.6667)
+position = Vector2(30, -20)
 debug_color = Color(0.713726, 0.0705882, 0.0117647, 0.419608)
 
 [node name="EnemyAnimation" type="AnimationPlayer" parent="."]
@@ -128,4 +172,5 @@ libraries = {
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 
+[editable path="Hitbox"]
 [editable path="Hurtbox"]
