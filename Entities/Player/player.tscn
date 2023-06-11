@@ -131,6 +131,7 @@ libraries = {
 script = ExtResource("3_bfsxt")
 
 [node name="BorderCollider" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(50, 16)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")

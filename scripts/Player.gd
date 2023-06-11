@@ -8,7 +8,7 @@ extends CharacterBody2D
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var move_flip = 400
+var move_flip = 0
 
 func _physics_process(delta):
 	# Add the gravity.

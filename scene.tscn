@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=10 format=3 uid="uid://cgi0b3w8exlvu"]
 
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_ctpxj"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
-[ext_resource type="PackedScene" uid="uid://rn6qq0wdy0ud" path="res://Entities/Enemies/enemy.tscn" id="6_44s2c"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="5_c7fti"]
+[ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="6_i3k8n"]
+[ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="7_e0vrl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
 size = Vector2(11.6, 0.669999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7gq2v"]
 size = Vector2(28, 680)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
+size = Vector2(86.3332, 170.333)
 
 [node name="Scene" type="Node2D"]
 position = Vector2(659, 517)
@@ -51,5 +56,23 @@ position = Vector2(-83, -193)
 [node name="Player" parent="." instance=ExtResource("2_0srad")]
 position = Vector2(195, -84)
 
-[node name="Enemy" parent="." instance=ExtResource("6_44s2c")]
-position = Vector2(-480, -140)
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(-500, -68)
+script = ExtResource("5_c7fti")
+hp = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(1, 1.99219)
+texture = ExtResource("6_i3k8n")
+
+[node name="BorderCollider" type="CollisionShape2D" parent="Enemy"]
+visible = false
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_d8flk")
+
+[node name="Hurtbox" parent="Enemy" instance=ExtResource("7_e0vrl")]
+
+[connection signal="hurt" from="Enemy/Hurtbox" to="Enemy" method="_on_hurtbox_hurt"]
+
+[editable path="Player"]
+[editable path="Player/Hitbox"]
