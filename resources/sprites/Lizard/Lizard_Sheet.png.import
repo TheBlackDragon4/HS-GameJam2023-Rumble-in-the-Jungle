@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmo7jg141oret"
-path="res://.godot/imported/Lizard_Sheet.png-f054e9901ea9b313fe9ec71fc160b918.ctex"
+path="res://.godot/imported/Lizard_Sheet.png-a448e63517d5a66df12c40b6138a508c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lizard/Lizard_Sheet.png"
-dest_files=["res://.godot/imported/Lizard_Sheet.png-f054e9901ea9b313fe9ec71fc160b918.ctex"]
+source_file="res://resources/sprites/Lizard/Lizard_Sheet.png"
+dest_files=["res://.godot/imported/Lizard_Sheet.png-a448e63517d5a66df12c40b6138a508c.ctex"]
 
 [params]
 
