@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgi0b3w8exlvu"]
 
-[ext_resource type="Script" path="res://scripts/World.gd" id="1_ctpxj"]
+[ext_resource type="Script" path="res://scripts/escape-enter-entf.gd" id="1_0pfoj"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="5_c7fti"]
@@ -18,7 +18,7 @@ size = Vector2(86.3332, 170.333)
 
 [node name="Scene" type="Node2D"]
 position = Vector2(659, 517)
-script = ExtResource("1_ctpxj")
+script = ExtResource("1_0pfoj")
 
 [node name="Border" type="Node2D" parent="."]
 
