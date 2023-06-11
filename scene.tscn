@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2s4428cr2etw"]
+[gd_scene load_steps=7 format=3 uid="uid://cgi0b3w8exlvu"]
 
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_ctpxj"]
-[ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Player/player.tscn" id="2_0srad"]
-[ext_resource type="PackedScene" uid="uid://rn6qq0wdy0ud" path="res://Enemies/enemy.tscn" id="6_44s2c"]
-[ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
+[ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
+[ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
+[ext_resource type="PackedScene" uid="uid://rn6qq0wdy0ud" path="res://Entities/Enemies/enemy.tscn" id="6_44s2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
 size = Vector2(11.6, 0.669999)
@@ -44,7 +44,7 @@ position = Vector2(16, -59)
 z_index = -1
 position = Vector2(-105, -153)
 scale = Vector2(1.13086, 0.658203)
-texture = ExtResource("6_136cb")
+texture = ExtResource("2_dk0dc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-83, -193)
