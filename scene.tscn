@@ -5,123 +5,15 @@
 [ext_resource type="Script" path="res://scripts/Animate.gd" id="4_khgh5"]
 [ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="5_6iwr6"]
 [ext_resource type="AudioStream" uid="uid://btdkf40buegr" path="res://resources/sounds/blurp.wav" id="5_xn2d0"]
+[ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Player/player.tscn" id="2_0srad"]
 [ext_resource type="PackedScene" uid="uid://rn6qq0wdy0ud" path="res://Enemies/enemy.tscn" id="6_44s2c"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
-[ext_resource type="Script" path="res://scripts/Player.gd" id="8_s70ku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
 size = Vector2(11.6, 0.669999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7gq2v"]
 size = Vector2(28, 680)
-
-[sub_resource type="Animation" id="Animation_qq0fr"]
-resource_name = "Idle"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_xwqkd"]
-resource_name = "Jump"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
-}
-
-[sub_resource type="Animation" id="Animation_nfr35"]
-resource_name = "Punch"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_1piet"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_xo5x5"]
-resource_name = "Walk"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [3, 1]
-}
-
-[sub_resource type="Animation" id="Animation_n7pag"]
-resource_name = "Walk_Back"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [4, 1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_du2e3"]
-_data = {
-"Idle": SubResource("Animation_qq0fr"),
-"Jump": SubResource("Animation_xwqkd"),
-"Punch": SubResource("Animation_nfr35"),
-"RESET": SubResource("Animation_1piet"),
-"Walk": SubResource("Animation_xo5x5"),
-"Walk_Back": SubResource("Animation_n7pag")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
-size = Vector2(86.3332, 170.333)
 
 [node name="Scene" type="Node2D"]
 position = Vector2(659, 517)
@@ -194,8 +86,9 @@ position = Vector2(-105, -153)
 scale = Vector2(1.13086, 0.658203)
 texture = ExtResource("6_136cb")
 
-[node name="Enemy" parent="." instance=ExtResource("6_44s2c")]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-83, -193)
 
-[editable path="Fighter/CharacterBody2D/Hitbox"]
-[editable path="Enemy"]
-[editable path="Enemy/Hurtbox"]
+[node name="Player" parent="." instance=ExtResource("2_0srad")]
+
+[node name="Enemy" parent="." instance=ExtResource("6_44s2c")]
