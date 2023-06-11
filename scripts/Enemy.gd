@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 300.0
-@export var jump_speed = -400.0
+@export var jump_speed = -800.0
 var hp = 0
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -47,7 +47,7 @@ func _idle():
 			velocity.x = 0
 			_smart_play("Idle")
 			locked = 1
-			timer.wait_time = rng.randf_range(0,5)
+			timer.wait_time = rng.randf_range(0,3)
 			timer.start()
 	
 func _move():
@@ -65,6 +65,14 @@ func _move():
 		else:
 			velocity.x = speed * -1 * orientation
 			_smart_play("Walk_Back")
+			
+		decision = rng.randf()
+		print_debug(decision)
+		if decision > 0.5:
+			print_debug("Jump")
+			_jump()
+			
+		
 		locked = 1
 		timer.wait_time = rng.randf_range(0.2,0.7)
 		timer.start()
@@ -78,6 +86,12 @@ func _attack():
 			sound.play()
 		_smart_play("Punch")
 		
+func _jump():
+	if is_on_floor():
+		velocity.y = jump_speed
+		_smart_play("Jump")
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
