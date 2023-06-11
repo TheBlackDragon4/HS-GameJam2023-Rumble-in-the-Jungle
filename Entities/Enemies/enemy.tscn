@@ -1,9 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://be70f8swjaixt"]
 
+
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_w6hoa"]
 [ext_resource type="Texture2D" uid="uid://dxf8ekaieb3ip" path="res://resources/sprites/Snake/Snake_Sheet.png" id="2_51c3g"]
 [ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="3_3krpr"]
 [ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="3_oy0cc"]
+[ext_resource type="AudioStream" uid="uid://8thjcfoo3b0d" path="res://resources/sounds/hiss.wav" id="4_arqkh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
 size = Vector2(155.333, 192.667)
@@ -147,7 +149,7 @@ texture = ExtResource("2_51c3g")
 flip_h = true
 hframes = 3
 vframes = 3
-frame = 4
+frame = 7
 
 [node name="BorderCollider" type="CollisionShape2D" parent="."]
 visible = false
@@ -169,6 +171,9 @@ debug_color = Color(0.713726, 0.0705882, 0.0117647, 0.419608)
 libraries = {
 "": SubResource("AnimationLibrary_5k0sb")
 }
+
+[node name="EnemySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_arqkh")
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 

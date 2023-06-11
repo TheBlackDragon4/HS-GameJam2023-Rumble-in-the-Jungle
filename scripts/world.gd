@@ -4,6 +4,17 @@ func _ready():
 	set_process(true)
 	$Interface/Retry.hide()
 	
+	var random = RandomNumberGenerator.new()
+	var scene = random.randf()
+	
+	if scene <= 0.5:
+		$Background/Jungle.hide()
+		$Background/Jungle/JungleAudio.play()
+	else:
+		$Background/Jungle2.hide()
+		$Background/Jungle2/JungleAudio2.play()
+	
+	
 
 func _process(delta):
 	# option to exit the game

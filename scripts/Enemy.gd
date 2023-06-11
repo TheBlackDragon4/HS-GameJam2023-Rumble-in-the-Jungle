@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var animation
 var player
+var sound
 
 var timer
 var locked = 0
@@ -65,17 +66,19 @@ func _move():
 func _attack():
 	var distance = _get_distance_to_player(true)
 	var decision = distance - rng.randf_range(0,200)
-#	print_debug(decision)
+
 	if decision < 0:
+		print_debug("Played")
+		if not sound.playing:
+			sound.play()
 		_smart_play("Punch")
-
 		
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation = get_node("EnemyAnimation")
 	player = get_node("../Player")
+	sound = get_node("EnemySound")
 	pass # Replace with function body.
 
 
