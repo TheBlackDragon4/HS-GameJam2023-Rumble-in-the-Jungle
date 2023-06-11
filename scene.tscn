@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=8 format=3 uid="uid://cgi0b3w8exlvu"]
 
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_ctpxj"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
+[ext_resource type="AudioStream" uid="uid://btdkf40buegr" path="res://resources/sounds/blurp.wav" id="4_qkxwa"]
 [ext_resource type="PackedScene" uid="uid://rn6qq0wdy0ud" path="res://Entities/Enemies/enemy.tscn" id="6_44s2c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
@@ -51,4 +52,10 @@ position = Vector2(-83, -193)
 
 [node name="Player" parent="." instance=ExtResource("2_0srad")]
 
+[node name="PlayerSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("4_qkxwa")
+
 [node name="Enemy" parent="." instance=ExtResource("6_44s2c")]
+
+[editable path="Player"]
+[editable path="Player/Hitbox"]
