@@ -19,6 +19,7 @@ func _process(_delta):
 		_smart_play("Walk")
 	if Input.is_action_pressed("key_attack_one") and not locked:
 		_smart_play("Punch",true)
+		get_node("../PlayerSound").play()
 		locked = 1
 		timer.start()
 	if Input.is_action_pressed("ui_right"):

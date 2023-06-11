@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2s4428cr2etw"]
+[gd_scene load_steps=19 format=3 uid="uid://c2s4428cr2etw"]
 
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_ctpxj"]
 [ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://Lizard/Lizard_Sheet.png" id="3_gussx"]
 [ext_resource type="Script" path="res://scripts/Animate.gd" id="4_khgh5"]
 [ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="5_6iwr6"]
+[ext_resource type="AudioStream" uid="uid://btdkf40buegr" path="res://resources/sounds/blurp.wav" id="5_xn2d0"]
 [ext_resource type="PackedScene" uid="uid://rn6qq0wdy0ud" path="res://Enemies/enemy.tscn" id="6_44s2c"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="8_s70ku"]
@@ -175,6 +176,9 @@ visible = false
 position = Vector2(260.5, -350.5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
+
+[node name="PlayerSound" type="AudioStreamPlayer" parent="Fighter/CharacterBody2D"]
+stream = ExtResource("5_xn2d0")
 
 [node name="Hitbox" parent="Fighter/CharacterBody2D" instance=ExtResource("5_6iwr6")]
 visible = false
