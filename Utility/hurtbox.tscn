@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Hurtbox.gd" id="1_lgu6r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npapu"]
-size = Vector2(128, 256)
+size = Vector2(232, 290)
 
 [node name="Hurtbox" type="Area2D"]
 collision_layer = 4
