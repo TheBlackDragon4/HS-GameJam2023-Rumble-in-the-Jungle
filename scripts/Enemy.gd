@@ -24,6 +24,7 @@ func _on_hurtbox_hurt(damage):
 		queue_free()
 		# spawn new enemy
 		var enemy = duplicate()
-		enemy.position = Vector2(randf_range(100, 900), -50)
+		# normal y = -500
+		enemy.position = Vector2(randf_range(400, -550), -200)
 		print("spawn")
 		get_parent().add_child(enemy)

@@ -13,17 +13,19 @@ script = ExtResource("1_eojai")
 hp = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-509, -285)
 scale = Vector2(1, 1.99219)
 texture = ExtResource("2_57imo")
 
 [node name="BorderCollider" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-508.75, -286.75)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_pw6n3")]
+visible = false
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 0)
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 
