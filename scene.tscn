@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=8 format=3 uid="uid://cgi0b3w8exlvu"]
 
-[ext_resource type="Script" path="res://scripts/escape-enter-entf.gd" id="1_0pfoj"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
 [ext_resource type="Script" path="res://scripts/Score.gd" id="5_dw4nc"]
@@ -17,9 +16,9 @@ default_font_size = 41
 
 [node name="Scene" type="Node2D"]
 position = Vector2(659, 517)
-script = ExtResource("1_0pfoj")
 
 [node name="Border" type="Node2D" parent="."]
+visible = false
 
 [node name="Floor" type="StaticBody2D" parent="Border"]
 
@@ -59,10 +58,39 @@ position = Vector2(195, -84)
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_eaiyl")
+
+[node name="Retry" type="ColorRect" parent="Interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -658.0
+offset_top = -518.0
+offset_right = 492.0
+offset_bottom = 130.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.792157)
+
+[node name="Button" type="Label" parent="Interface/Retry"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -30.0
+offset_right = 192.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"key\" to retry"
 
 [node name="Score" type="Label" parent="Interface"]
 layout_mode = 0
@@ -77,4 +105,3 @@ script = ExtResource("5_dw4nc")
 
 [editable path="Player"]
 [editable path="Player/Hitbox"]
-[editable path="Enemy"]
