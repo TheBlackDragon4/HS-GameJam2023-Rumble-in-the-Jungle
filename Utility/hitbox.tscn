@@ -11,7 +11,6 @@ collision_mask = 2
 script = ExtResource("1_hbaqa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(105, -412)
 shape = SubResource("RectangleShape2D_be15y")
 disabled = true
 

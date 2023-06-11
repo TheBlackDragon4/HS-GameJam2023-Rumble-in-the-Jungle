@@ -5,10 +5,10 @@ extends CharacterBody2D
 @export var jump_speed = -400.0
 @export var hp = 10
 
+signal playerDead
+
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-var move_flip = 0
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -29,13 +29,16 @@ func _physics_process(delta):
 
 func _on_hurtbox_hurt(damage):
 	hp -= damage
-	print("took damage")
 	if hp <= 0:
+		print(hp)
 		queue_free()
-		print("dead")
+		emit_signal("playerDead")
 
 func flip_direction():
 	apply_scale(Vector2(scale.x * -1,1)) # flip
-	set_position(Vector2(position.x + move_flip,position.y))
-	move_flip = move_flip * -1
+	set_position(Vector2(position.x, position.y))
 
+#func update_health():
+#	var healthbar = %Interface/PlayerHealth
+#	healthbar.value = hp
+	
