@@ -6,8 +6,6 @@ extends CharacterBody2D
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var move_flip = 0
-
 var animation
 var player
 
@@ -15,6 +13,7 @@ var timer
 var locked = 0
 
 var rng = RandomNumberGenerator.new()
+signal enemyDeath()
 
 
 func _smart_play(name,force=false):
@@ -100,19 +99,17 @@ func _on_hurtbox_hurt(damage):
 	hp -= damage
 	print("took damage")
 	if hp <= 0:
-		print("dead")
+		emit_signal("enemyDeath")
 		queue_free()
 		# spawn new enemy
 		var enemy = duplicate()
 		# normal y = -500
 		enemy.position = Vector2(randf_range(400, -550), -500)
-		print("spawn")
 		get_parent().add_child(enemy)
 
 func flip_direction():
 	apply_scale(Vector2(scale.x * -1,1)) # flip
-	set_position(Vector2(position.x + move_flip,position.y))
-	move_flip = move_flip * -1
+	set_position(Vector2(position.x,position.y))
 
 func _init():
 	timer = Timer.new()
