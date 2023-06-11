@@ -168,10 +168,12 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_3krpr")]
+visible = false
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(91.7148, 27.5843)
+position = Vector2(96.9745, 29.8285)
 rotation = 1.16239
+scale = Vector2(1, 1)
 disabled = false
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_oy0cc")]

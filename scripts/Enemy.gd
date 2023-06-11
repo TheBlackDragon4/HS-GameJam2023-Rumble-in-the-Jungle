@@ -68,8 +68,7 @@ func _move():
 			_smart_play("Walk_Back")
 			
 		decision = rng.randf()
-		print_debug(decision)
-		if decision > 0.7:
+		if decision > 0.8:
 			_jump()
 			
 		

@@ -86,7 +86,6 @@ grow_vertical = 2
 theme = SubResource("Theme_eaiyl")
 
 [node name="Retry" type="ColorRect" parent="Interface"]
-visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -104,25 +103,94 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -30.0
-offset_right = 192.0
-offset_bottom = 30.0
+offset_left = -198.0
+offset_top = -112.0
+offset_right = 186.0
+offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Press RED to retry"
 
+[node name="Credits" type="Label" parent="Interface/Retry"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -547.0
+offset_top = 20.0
+offset_right = -189.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game by
+Marcel Lilie
+Tim Menzner
+Alexander Ulsch"
+
+[node name="Credits2" type="Label" parent="Interface/Retry"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 163.0
+offset_top = 8.0
+offset_right = 547.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sound by
+Khac Quang Duy Le
+Magnuswaker
+Breviceps
+Keyframe_Audio"
+
+[node name="EnemyHealthBackgroudn" type="ColorRect" parent="Interface"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -646.0
+offset_top = -506.0
+offset_right = -308.0
+offset_bottom = -387.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.792157)
+
+[node name="PlayerHealthBackgroudn2" type="ColorRect" parent="Interface"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 138.0
+offset_top = -507.0
+offset_right = 476.0
+offset_bottom = -388.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.792157)
+
+[node name="PlayerHealthBackgroudn3" type="ColorRect" parent="Interface"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -185.0
+offset_top = -504.0
+offset_right = 5.0
+offset_bottom = -443.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.792157)
+
 [node name="Score" type="Label" parent="Interface"]
 layout_mode = 0
-offset_left = -650.0
-offset_top = -390.0
-offset_right = -495.0
-offset_bottom = -330.0
+offset_left = -168.0
+offset_top = -503.0
+offset_right = -13.0
+offset_bottom = -443.0
 text = "Score: 0"
 script = ExtResource("5_dw4nc")
 
 [node name="EnemyHealth" type="ProgressBar" parent="Interface"]
-modulate = Color(0.807843, 0.321569, 0.345098, 1)
 layout_mode = 0
 offset_left = -644.0
 offset_top = -448.0
@@ -141,7 +209,6 @@ offset_bottom = -1.0
 text = "Enemy Health"
 
 [node name="PlayerHealth" type="ProgressBar" parent="Interface"]
-modulate = Color(0.807843, 0.321569, 0.345098, 1)
 layout_mode = 0
 offset_left = 139.0
 offset_top = -448.0
@@ -152,6 +219,7 @@ step = 1.0
 value = 10.0
 
 [node name="EnemyHealthLabel" type="Label" parent="Interface/PlayerHealth"]
+layout_mode = 0
 offset_left = 25.0
 offset_top = -61.0
 offset_right = 302.0
