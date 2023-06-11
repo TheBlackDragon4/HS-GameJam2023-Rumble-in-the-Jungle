@@ -1,12 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=18 format=3 uid="uid://cgi0b3w8exlvu"]
 
-[ext_resource type="Texture2D" uid="uid://cmfud87s3nkcy" path="res://icon.svg" id="1_ojscw"]
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="2_ewcii"]
+[ext_resource type="Script" path="res://scripts/World.gd" id="1_ctpxj"]
 [ext_resource type="Texture2D" uid="uid://cmo7jg141oret" path="res://Lizard/Lizard_Sheet.png" id="3_gussx"]
 [ext_resource type="Script" path="res://scripts/Animate.gd" id="4_khgh5"]
 [ext_resource type="PackedScene" uid="uid://b4n3q3rbqn03" path="res://Utility/hitbox.tscn" id="5_6iwr6"]
+[ext_resource type="PackedScene" uid="uid://rn6qq0wdy0ud" path="res://Enemies/enemy.tscn" id="6_44s2c"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://Backgrounds/Jungle.jpeg" id="6_136cb"]
-[ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="8_3pxye"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="8_s70ku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
@@ -124,6 +123,8 @@ _data = {
 size = Vector2(86.3332, 170.333)
 
 [node name="Scene" type="Node2D"]
+position = Vector2(659, 517)
+script = ExtResource("1_ctpxj")
 
 [node name="Border" type="Node2D" parent="."]
 visible = false
@@ -180,26 +181,6 @@ visible = false
 collision_layer = 4
 collision_mask = 4
 
-[node name="Dummy" type="Node2D" parent="."]
-position = Vector2(49, 80)
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Dummy"]
-script = ExtResource("2_ewcii")
-hp = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="Dummy/CharacterBody2D"]
-position = Vector2(-509, -285)
-scale = Vector2(1, 1.99219)
-texture = ExtResource("1_ojscw")
-
-[node name="BorderCollider" type="CollisionShape2D" parent="Dummy/CharacterBody2D"]
-position = Vector2(-508.75, -286.75)
-scale = Vector2(1.5, 1.5)
-shape = SubResource("RectangleShape2D_d8flk")
-
-[node name="Hurtbox" parent="Dummy/CharacterBody2D" instance=ExtResource("8_3pxye")]
-visible = false
-
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(16, -59)
 
@@ -209,7 +190,10 @@ position = Vector2(-105, -153)
 scale = Vector2(1.13086, 0.658203)
 texture = ExtResource("6_136cb")
 
-[connection signal="hurt" from="Dummy/CharacterBody2D/Hurtbox" to="Dummy/CharacterBody2D" method="_on_hurtbox_hurt"]
+[node name="Enemy" parent="." instance=ExtResource("6_44s2c")]
+
+[connection signal="enemyDead" from="Enemy" to="." method="_on_enemy_enemy_dead"]
 
 [editable path="Fighter/CharacterBody2D/Hitbox"]
-[editable path="Dummy/CharacterBody2D/Hurtbox"]
+[editable path="Enemy"]
+[editable path="Enemy/Hurtbox"]
