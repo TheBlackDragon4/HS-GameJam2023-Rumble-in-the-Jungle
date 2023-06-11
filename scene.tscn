@@ -3,7 +3,9 @@
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_16jjp"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
-[ext_resource type="PackedScene" uid="uid://be70f8swjaixt" path="res://Entities/Enemies/enemy.tscn" id="4_ygb5f"]
+
+[ext_resource type="PackedScene" uid="uid://be70f8swjaixt" path="res://Entities/Enemies/enemy.tscn" id="3_pjvpy"]
+
 [ext_resource type="Script" path="res://scripts/Score.gd" id="5_dw4nc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
@@ -20,6 +22,7 @@ position = Vector2(659, 517)
 script = ExtResource("1_16jjp")
 
 [node name="Border" type="Node2D" parent="."]
+visible = false
 
 [node name="Floor" type="StaticBody2D" parent="Border"]
 
@@ -51,6 +54,9 @@ texture = ExtResource("2_dk0dc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-83, -193)
+
+[node name="Enemy" parent="." instance=ExtResource("3_pjvpy")]
+position = Vector2(-392, -130)
 
 [node name="Player" parent="." instance=ExtResource("2_0srad")]
 position = Vector2(62, -85)
@@ -110,4 +116,5 @@ offset_top = -448.0
 offset_right = -308.0
 offset_bottom = -387.0
 
+[connection signal="dead" from="Enemy" to="Interface/Score" method="_on_enemy_dead"]
 [connection signal="playerDead" from="Player" to="." method="_on_player_player_dead"]
