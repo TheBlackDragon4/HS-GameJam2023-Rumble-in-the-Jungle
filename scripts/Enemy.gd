@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 300.0
 @export var jump_speed = -400.0
-@export var hp = 10
+@export var hp = 1
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -22,18 +22,22 @@ func _smart_play(name,force=false):
 		animation.play(name)
 
 func _get_distance_to_player(absolute=false):
-	if absolute:
-		return abs (player.position.x - self.position.x)
+	if not player == null:
+		if absolute:
+			return abs (player.position.x - self.position.x)
+		else:
+			return player.position.x - self.position.x
 	else:
-		return player.position.x - self.position.x
+		return 1000		 
 		
 func _orientate_to_player():
-	if _get_distance_to_player() > 0:
-		if self.scale.y == -1:
-			flip_direction()
-	else:
-		if self.scale.y == 1:
-			flip_direction()
+	if not player == null:
+		if _get_distance_to_player() > 0:
+			if self.scale.y == -1:
+				flip_direction()
+		else:
+			if self.scale.y == 1:
+				flip_direction()
 			
 func _idle():
 	var decision = rng.randf()
@@ -48,10 +52,11 @@ func _idle():
 func _move():
 	var decision = rng.randf()
 	var orientation = 1
-	if player.position.x > self.position.x:
-		orientation = 1
-	else:
-		orientation = -1
+	if not player == null:
+		if player.position.x > self.position.x:
+			orientation = 1
+		else:
+			orientation = -1
 	if not locked:
 		if decision > 0.4:
 			velocity.x = speed * orientation
@@ -66,9 +71,8 @@ func _move():
 func _attack():
 	var distance = _get_distance_to_player(true)
 	var decision = distance - rng.randf_range(0,200)
-
 	if decision < 0:
-		print_debug("Played")
+#		print_debug("Played")
 		if not sound.playing:
 			sound.play()
 		_smart_play("Punch")

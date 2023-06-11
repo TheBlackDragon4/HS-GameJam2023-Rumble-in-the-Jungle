@@ -55,6 +55,7 @@ texture = ExtResource("2_dk0dc")
 
 [node name="JungleAudio" type="AudioStreamPlayer" parent="Background/Jungle"]
 stream = ExtResource("3_umphs")
+volume_db = -5.0
 
 [node name="Jungle2" type="Sprite2D" parent="Background"]
 z_index = -1
@@ -64,6 +65,7 @@ texture = ExtResource("3_rtx5k")
 
 [node name="JungleAudio2" type="AudioStreamPlayer" parent="Background/Jungle2"]
 stream = ExtResource("5_p1g6d")
+volume_db = -5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-83, -193)
