@@ -117,7 +117,8 @@ shape = SubResource("RectangleShape2D_d8flk")
 position = Vector2(-52, 74)
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(55, -21)
+position = Vector2(56, -34.6667)
+debug_color = Color(0.713726, 0.0705882, 0.0117647, 0.419608)
 
 [node name="EnemyAnimation" type="AnimationPlayer" parent="."]
 libraries = {
