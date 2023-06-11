@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=12 format=3 uid="uid://cgi0b3w8exlvu"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_16jjp"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
-[ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
+[ext_resource type="Texture2D" uid="uid://bdlbagf13jcfa" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
 [ext_resource type="PackedScene" uid="uid://be70f8swjaixt" path="res://Entities/Enemies/enemy.tscn" id="3_pjvpy"]
+[ext_resource type="Texture2D" uid="uid://daoxfthca3awo" path="res://resources/Backgrounds/Jungle2.jpeg" id="3_rtx5k"]
+[ext_resource type="AudioStream" uid="uid://d0jmw6i3j8j8w" path="res://resources/sounds/DarkJungle.wav" id="3_umphs"]
 [ext_resource type="Script" path="res://scripts/Score.gd" id="5_dw4nc"]
+[ext_resource type="AudioStream" uid="uid://cmv87y712t7tg" path="res://resources/sounds/boss.mp3" id="5_p1g6d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
 size = Vector2(11.6, 0.669999)
@@ -49,6 +52,18 @@ z_index = -1
 position = Vector2(-105, -153)
 scale = Vector2(1.13086, 0.658203)
 texture = ExtResource("2_dk0dc")
+
+[node name="JungleAudio" type="AudioStreamPlayer" parent="Background/Jungle"]
+stream = ExtResource("3_umphs")
+
+[node name="Jungle2" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(-105, -153)
+scale = Vector2(1.13086, 0.658203)
+texture = ExtResource("3_rtx5k")
+
+[node name="JungleAudio2" type="AudioStreamPlayer" parent="Background/Jungle2"]
+stream = ExtResource("5_p1g6d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-83, -193)
