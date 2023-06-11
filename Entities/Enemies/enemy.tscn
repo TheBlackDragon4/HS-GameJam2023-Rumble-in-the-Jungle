@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ln5eu3cdclos" path="res://Utility/hurtbox.tscn" id="3_oy0cc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8flk"]
-size = Vector2(169.333, 194)
+size = Vector2(155.333, 192.667)
 
 [sub_resource type="Animation" id="Animation_8ahnx"]
 resource_name = "Idle"
@@ -96,8 +96,7 @@ _data = {
 "Walk_Back": SubResource("Animation_dptkb")
 }
 
-[node name="Enemy" type="CharacterBody2D"]
-position = Vector2(-500, -68)
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_w6hoa")
 hp = 1
 
@@ -106,15 +105,19 @@ scale = Vector2(1, 1.99219)
 texture = ExtResource("2_sxomi")
 hframes = 3
 vframes = 3
-frame = 6
+frame = 1
 
 [node name="BorderCollider" type="CollisionShape2D" parent="."]
-position = Vector2(7, 52.5)
+visible = false
+position = Vector2(3.5, 53.5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_d8flk")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_oy0cc")]
-visible = false
+position = Vector2(-52, 74)
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(55, -21)
 
 [node name="EnemyAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -122,3 +125,5 @@ libraries = {
 }
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]

@@ -55,6 +55,7 @@ position = Vector2(-83, -193)
 position = Vector2(195, -84)
 
 [node name="Enemy" parent="." instance=ExtResource("6_44s2c")]
+position = Vector2(-481, -138)
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -102,6 +103,3 @@ text = "Score: 0"
 script = ExtResource("5_dw4nc")
 
 [connection signal="dead" from="Enemy" to="Interface/Score" method="_on_enemy_dead"]
-
-[editable path="Player"]
-[editable path="Player/Hitbox"]

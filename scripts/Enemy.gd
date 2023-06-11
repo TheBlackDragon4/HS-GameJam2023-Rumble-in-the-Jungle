@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var speed = 300.0
 @export var jump_speed = -400.0
 @export var hp = 10
+@onready var player = get_tree().get_nodes_in_group("player")[0]
+var playerPos = 0
 
 signal dead()
 
@@ -28,6 +30,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_smart_play("Idle")
+#	player = get_tree().get_nodes_in_group("player")[0]
 	pass
 
 func _physics_process(delta):
@@ -43,8 +46,7 @@ func _on_hurtbox_hurt(damage):
 		emit_signal("dead")
 		# spawn new enemy
 		var enemy = duplicate()
-		# normal y = -500
-		enemy.position = Vector2(randf_range(400, -550), -500)
+		enemy.position = Vector2(randf_range(-550, 400), -500)
 		get_parent().add_child(enemy)
 
 
