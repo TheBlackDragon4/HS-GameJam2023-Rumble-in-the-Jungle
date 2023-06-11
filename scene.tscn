@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgi0b3w8exlvu"]
+[gd_scene load_steps=9 format=3 uid="uid://cgi0b3w8exlvu"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_16jjp"]
 [ext_resource type="PackedScene" uid="uid://dk5tjxxwugqvc" path="res://Entities/Player/player.tscn" id="2_0srad"]
 [ext_resource type="Texture2D" uid="uid://dh6mxu0rpehux" path="res://resources/Backgrounds/Jungle.jpeg" id="2_dk0dc"]
+[ext_resource type="PackedScene" uid="uid://be70f8swjaixt" path="res://Entities/Enemies/enemy.tscn" id="4_ygb5f"]
 [ext_resource type="Script" path="res://scripts/Score.gd" id="5_dw4nc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tm2t1"]
@@ -53,6 +54,8 @@ position = Vector2(-83, -193)
 
 [node name="Player" parent="." instance=ExtResource("2_0srad")]
 position = Vector2(62, -85)
+
+[node name="Enemy" parent="." instance=ExtResource("4_ygb5f")]
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
